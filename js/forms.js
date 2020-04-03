@@ -121,9 +121,11 @@ let js_forms = {
 
     // Вывод лога
     log: function (message) {
-        if (this.is_debug) {
-            console.log(message);
+        if (!this.is_debug) {
+            return;
         }
+
+        console.log(message);
     }
 };
 
