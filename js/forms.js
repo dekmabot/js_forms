@@ -104,7 +104,7 @@ let js_forms = {
 
         // В ответе - сообщение
         if (data.message !== undefined) {
-            this.error(data.message);
+            this.alert(data.message);
         }
 
         // В ответе - редирект
@@ -114,7 +114,7 @@ let js_forms = {
     },
 
     // Вывод ошибки в интерфейс пользователя
-    error: function (message) {
+    alert: function (message) {
         this.log(message);
         alert(message);
     },
