@@ -70,7 +70,7 @@ let js_forms = {
     // Запрос на сервер выполнился с ошибкой
     resultFailed: function (form, data) {
 
-        // Форма содержит callback при успехе
+        // Форма содержит callback при ошибке
         if (form.dataset.callback_failed !== undefined) {
             let functionName = form.dataset.callback_failed;
             functionName = window[functionName];
