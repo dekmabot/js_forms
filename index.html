@@ -1,96 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Js forms</title>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-</head>
-<body>
-
-<div class="container">
-    <h1>Скрипт отправки форма</h1>
-    <p>
-        Данный скрипт написан на javascript, он подключается к формам с атрибутам data-submittable="1" и обрабатывает отправку данных.
-        Подключение обработки черех дата-атрибуты у элемента form:
-    </p>
-    <pre>
-data-submittable="1" - подключить обработчик формы
-    </pre>
-    <p>
-        Отправка формы поддерживает отображение сообщения и редирект на страницу, а также вызов коллбэков в случае успеха и в случае ошибки.<br>
-        Функции коллбэка могу принимаь значения: functionName(form, data)
-    </p>
-    <pre>
-data-callback_success="functionName" - callback при успешной отправке формы
-data-callback_failed="functionName" - callback при ошибке отправки формы,
-    </pre>
-    <hr>
-
-    <div class="row mb-5">
-        <div class="col-sm-6">
-            <h4>1. GET форма без обработчика</h4>
-
-            <form action="http://httpbin.org/get" method="GET">
-                <div class="form-group">
-                    <label for="test1_text">Enter some text</label>
-                    <input type="text" class="form-control" name="text" id="test1_text" value="Some text">
-                </div>
-                <div class="form-group">
-                    <label for="test1_select">Select some value</label>
-                    <select multiple class="form-control" name="select" id="test1_select">
-                        <option>1</option>
-                        <option>2</option>
-                        <option selected>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="1" name="checkbox" id="test1_checkbox" checked>
-                    <label class="form-check-label" for="test1_checkbox">
-                        Set or not set checkbox
-                    </label>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-outline-primary">Отправить данные</button>
-                </div>
-            </form>
-
-        </div>
-        <div class="col-sm-6">
-            <h4>2. POST форма без обрабочика</h4>
-
-            <form action="http://httpbin.org/post" method="POST">
-                <div class="form-group">
-                    <label for="test2_text">Enter some text</label>
-                    <input type="text" class="form-control" name="text" id="test2_text" value="Some text">
-                </div>
-                <div class="form-group">
-                    <label for="test2_select">Select some value</label>
-                    <select multiple class="form-control" name="select" id="test2_select">
-                        <option>1</option>
-                        <option>2</option>
-                        <option selected>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="1" name="checkbox" id="test2_checkbox" checked>
-                    <label class="form-check-label" for="test2_checkbox">
-                        Set or not set checkbox
-                    </label>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-outline-primary">Отправить данные</button>
-                </div>
-            </form>
-
-        </div>
-    </div>
-
-    <hr>
 
     <script>
         function myFuncSuccess(data, form){
@@ -101,74 +8,41 @@ data-callback_failed="functionName" - callback при ошибке отправ�
         }
     </script>
 
-    <div class="row">
-        <div class="col-sm-6">
-            <h4>3. GET форма с обработчиком</h4>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <h4>3. GET форма с обработчиком</h4>
 
-            <form action="http://httpbin.org/get" method="GET" data-submittable="1" data-callback_success="myFuncSuccess" data-callback_failed="myFuncFailed">
-                <div class="form-group">
-                    <label for="test3_text">Enter some text</label>
-                    <input type="text" class="form-control" name="text" id="test3_text" value="Some text">
-                </div>
-                <div class="form-group">
-                    <label for="test3_select">Select some value</label>
-                    <select multiple class="form-control" name="select" id="test3_select">
-                        <option>1</option>
-                        <option>2</option>
-                        <option selected>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="1" name="checkbox" id="test3_checkbox" checked>
-                    <label class="form-check-label" for="test3_checkbox">
-                        Set or not set checkbox
-                    </label>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Отправить данные</button>
-                </div>
-            </form>
-
-        </div>
-        <div class="col-sm-6">
-            <h4>4. POST форма с обработчиком</h4>
-
-            <form action="http://httpbin.org/post" method="POST" data-submittable="1">
-                <div class="form-group">
-                    <label for="test4_text">Enter some text</label>
-                    <input type="text" class="form-control" name="text" id="test4_text" value="Some text">
-                </div>
-                <div class="form-group">
-                    <label for="test4_select">Select some value</label>
-                    <select multiple class="form-control" name="select" id="test4_select">
-                        <option>1</option>
-                        <option>2</option>
-                        <option selected>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="1" name="checkbox" id="test4_checkbox" checked>
-                    <label class="form-check-label" for="test4_checkbox">
-                        Set or not set checkbox
-                    </label>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Отправить данные</button>
-                </div>
-            </form>
-
+                <form action="http://httpbin.org/get" method="GET" data-submittable="1" data-callback_success="myFuncSuccess" data-callback_failed="myFuncFailed">
+                    <div class="form-group">
+                        <label for="test3_text">Enter some text</label>
+                        <input type="text" class="form-control" name="text" id="test3_text" value="Some text">
+                    </div>
+                    <div class="form-group">
+                        <label for="test3_select">Select some value</label>
+                        <select multiple class="form-control" name="select" id="test3_select">
+                            <option>1</option>
+                            <option>2</option>
+                            <option selected>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="1" name="checkbox" id="test3_checkbox" checked>
+                        <label class="form-check-label" for="test3_checkbox">
+                            Set or not set checkbox
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Отправить данные</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
-<script src="js/forms.js"></script>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-</body>
-</html>
